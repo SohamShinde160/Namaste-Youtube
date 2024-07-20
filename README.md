@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+## Youtube
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Header
+- Body
+    - Sidebar
+        - MenuItem
+    - MainContainer
+        - ButtonsList
+        - VideoConatiner
+            - VideoCard
 
-## Available Scripts
+## Debouncing:-
+- if you are typing very slow - the diff betn the key stroke is 200ms - very low
+- if you are typing very fast - the diff betn the key stroke is 50ms - very high
+    & if you are typing very fast , you don't need suggestion for result
+    hence it is useless to call API at every stroke
 
-In the project directory, you can run:
+-    performance :-
+        - eg word :=> iphone pro max = 14 letters (14 API call) * 1000 people = 14k API Call 
+        - eg word :=> iphone pro max = 14 letters (3 API call) * 1000 people = 3k API Call   ( using debouncing )
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Debouncing with 200ms 
+    - if difference between the 2 key stroke is less than < 200ms  -- then decline the API CALL
+    - it means you are typing very fast
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Live chat >>>>> Infinite Scroll >>>>>> Pagination
 
-### `npm run build`
+-- Challenges of live chat
+    -- get data live 
+    -- update the UI with the data
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2 ways to handle live data
+ - Web Sockets :- 2 way connection betn server & UI (handshake communication) 
+                    as soon as website is opened connection is established and u can easily send data (no regular Interval) --- time critical (near to the real time)
+                    Initial Connection takes time & onces the connection is established now you can send data in any dirn , anywhere you want 
+Application like :- live trading platform (zerodha , kite ) crypto currency uses Web Sockets
+Also Application like :- Whatsapp
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ - API Polling (long polling):- UI req the sever & data flows from sever to UI (1D) (regular Interval)
+                                Unidirectional.
+                                UI will keep polling data from server after every regular interval 
+                                (eg:-Gmail) ( Cricket , Espn ) (YT comments)
